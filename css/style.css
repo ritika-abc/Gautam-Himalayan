@@ -1,0 +1,459 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto';
+}
+
+.jus {
+  text-align: justify !important;
+}
+
+.border-warnings {
+
+  border: 2px dashed rgb(243 186 54);
+}
+
+.holderCircle {
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  margin: 60px auto;
+  position: relative;
+}
+
+
+.dotCircle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100%;
+  z-index: 20;
+}
+
+.dotCircle .itemDot {
+  display: block;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  background: #ffffff;
+  color: #7d4ac7;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 30px;
+  z-index: 3;
+  cursor: pointer;
+  border: 2px solid #e6e6e6;
+}
+
+.dotCircle .itemDot .forActive {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+
+.dotCircle .itemDot .forActive::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border: 3px solid #7d4ac7;
+  bottom: -31px;
+  left: -14px;
+  filter: blur(1px);
+  position: absolute;
+  border-radius: 100%;
+}
+
+.dotCircle .itemDot .forActive::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  filter: blur(5px);
+  top: -15px;
+  position: absolute;
+  transform: rotate(-45deg);
+  border: 6px solid #a733bb;
+  right: -39px;
+}
+
+.dotCircle .itemDot.active .forActive {
+  display: block;
+}
+
+.round {
+  position: absolute;
+  left: 40px;
+  top: 45px;
+  width: 410px;
+  height: 410px;
+  border: 2px dotted #a733bb;
+  border-radius: 100%;
+  -webkit-animation: rotation 100s infinite linear;
+}
+
+.dotCircle .itemDot:hover,
+.dotCircle .itemDot.active {
+  color: #ffffff;
+  transition: 0.5s;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d4ac7+0,a733bb+100 */
+  background: #7d4ac7;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d4ac7', endColorstr='#a733bb', GradientType=1);
+  /* IE6-9 */
+  border: 2px solid #ffffff;
+  -webkit-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+  -moz-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+  box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+}
+
+.dotCircle .itemDot {
+  font-size: 40px;
+}
+
+.contentCircle {
+  width: 250px;
+  border-radius: 100%;
+  color: #222222;
+  position: relative;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contentCircle .CirItem {
+  border-radius: 100%;
+  color: #222222;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.5s;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  margin: auto;
+  line-height: 250px;
+}
+
+.CirItem.active {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+.contentCircle .CirItem i {
+  font-size: 180px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -90px;
+  color: #000000;
+  opacity: 0.1;
+}
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+  .holderCircle {
+    /* width: 300px; height: 300px;*/
+    margin: 110px auto;
+  }
+
+  .holderCircle::after {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dotCircle {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width:600px) and (max-width:767px) {}
+
+@media only screen and (min-width:768px) and (max-width:991px) {}
+
+@media only screen and (min-width:992px) and (max-width:1199px) {}
+
+@media only screen and (min-width:1200px) and (max-width:1499px) {}
+
+.title-box .title {
+  font-weight: 600;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: -1;
+}
+
+.title-box span {
+  text-shadow: 0 10px 10px rgba(0, 0, 0, .15);
+  font-weight: 800;
+  color: #640178;
+}
+
+.title-box p {
+  font-size: 17px;
+  line-height: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header_top_cont span {
+  color: #6c747a;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.quality_section {
+  padding: 50px 0px;
+}
+
+.quality_section_wrap {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.quality_top_title h2 {
+  color: #292929;
+  font-size: 2.8125rem;
+}
+
+.quality_title h4 {
+  color: #525252;
+  font-size: 1.42rem;
+  font-weight: 700;
+}
+
+.quality_title h4 font {
+  font-weight: 400;
+}
+
+.quality_desc p {
+  color: #7a7b78;
+  font-size: 0.99375rem;
+}
+
+.quality_img {
+  width: 130px;
+  height: 80px;
+  border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.quality_middle_gallery {
+  max-width: 300px;
+  margin: auto;
+}
+
+.quality_section_wrap2 h2 {
+  color: #292929;
+  font-size: 50px;
+}
+
+.quality_section_wrap2 h4 {
+  color: #181b31;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.quality_section_wrap2 p {
+  color: #7a7a7a;
+  font-size: 16.12px;
+  font-weight: 400;
+}
+
+.quality_section_wrap2 .quality_img2 {
+  width: 90px;
+  height: 90px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: #f8f8f8;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.quality_section_wrap2 .quality_content2_img1 {
+  top: 27%;
+  left: 35px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.quality_section_wrap2 .quality_content2_img2 {
+  top: 27%;
+  right: 35px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.quality_section_wrap2 .quality_content2_img3 {
+  bottom: 27%;
+  left: 0px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.quality_section_wrap2 .quality_content2_img4 {
+  bottom: 27%;
+  right: 0px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.quality_section_wrap2 .quality_text {
+  width: 290px;
+}
+
+.quality2_left_thumb {
+  top: 0;
+  left: 0;
+}
+
+.quality2_righttop_thumb {
+  top: 0;
+  right: 0;
+}
+
+.quality2_rightbottom_thumb {
+  bottom: 0;
+  right: 0;
+}
+
+.instagram_style_1 {
+  padding-top: 70px;
+  padding-bottom: 120px;
+  position: relative;
+}
+
+.instagram_style_1 .instagram_image_group>li {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.instagram_style_1 .instagram_image_group a {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  background-color: #8bc81e;
+}
+
+.instagram_style_1 .instagram_image_group a img {
+  -webkit-transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.instagram_style_1 .instagram_image_group a i {
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  -webkit-transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.instagram_style_1 .instagram_image_group a span {
+  top: 70%;
+  left: 50%;
+  opacity: 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  position: absolute;
+  -webkit-transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  -webkit-transform: translate(-50%, -70%);
+  transform: translate(-50%, -70%);
+}
+
+.instagram_style_1 .instagram_image_group a:hover img {
+  opacity: 0.4;
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
+}
+
+.instagram_style_1 .instagram_image_group a:hover i {
+  opacity: 1;
+}
+
+@media screen and (max-width:768px) {
+  /* .carousel_margin{
+    margin-top: 20px;
+  }
+  .nav_heading{
+    font-size: 15px !important;
+  } */
+}
