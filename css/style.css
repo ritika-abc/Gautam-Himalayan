@@ -465,3 +465,7 @@ h6 {
 .top_hover:hover{
   transform: translateY(-30px);
 }
+.member-img{
+  border: 1px solid rgb(0, 0, 0);
+  overflow: hidden;
+}
