@@ -457,3 +457,11 @@ h6 {
     font-size: 15px !important;
   } */
 }
+
+.top_hover{
+  transition: 0.4s;
+  transform: translateY(0px);
+}
+.top_hover:hover{
+  transform: translateY(-30px);
+}
