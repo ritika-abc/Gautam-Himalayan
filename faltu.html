@@ -1,0 +1,240 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+body {
+  height: 100%;
+  width: 100%;
+ 
+  margin: 0;
+}
+
+#note {
+  position: absolute;
+  color: rgba(249,241,204,1);
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  margin: auto;
+  text-align: center;
+  user-select: none;
+  font-family: Arial;
+}
+    </style>
+ </head>
+ <body>
+    <canvas id="canvas"></canvas>
+<span id="note">Click to add fireflies</span>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi adipisci corporis cum a ab, exercitationem eligendi nisi aliquam suscipit consequuntur et quasi placeat alias! Accusamus voluptatibus maxime eveniet deserunt quam. Rem eius tempora ad. Porro illo fuga earum at nobis iste autem beatae consequuntur sit, pariatur dignissimos aliquid cum quod vel quis corporis, voluptas deserunt tenetur quo tempora? Magnam, harum at delectus eius officia dicta maiores. Quaerat dignissimos molestias id accusantium vero voluptates quisquam libero fuga nisi accusamus praesentium aut assumenda iste consectetur ipsum possimus aperiam, ut itaque commodi dolore quod eveniet! Nemo eos itaque cumque commodi quos amet mollitia ullam illum, consectetur adipisci esse, accusantium error reprehenderit modi ipsum, qui at laboriosam. Adipisci, recusandae quaerat. Magni architecto voluptatibus, ea accusamus est eius molestiae dolore quam quo incidunt neque veritatis dignissimos quia atque esse aliquam! Voluptas corrupti quidem, aperiam obcaecati, sit qui mollitia temporibus libero itaque dicta suscipit molestias minima, similique perspiciatis! Accusamus aut aspernatur, adipisci quod doloremque molestias earum perferendis fugiat hic inventore assumenda nobis excepturi provident repellat ad numquam dolor eveniet facere. Recusandae quis autem dicta vitae qui asperiores quisquam, at, cumque, cupiditate rem ipsam pariatur doloribus porro nihil odit voluptatibus impedit dolor inventore dignissimos veritatis reiciendis fugit ipsa. Inventore similique dolorum dignissimos excepturi consequuntur, accusamus qui distinctio ipsam omnis suscipit nobis veniam debitis officia, consectetur velit? Esse tempore id quo. Voluptatum, esse veritatis quaerat dignissimos, quam dolore repellendus odit maiores distinctio, ut architecto consequuntur ducimus explicabo. Asperiores, officia repudiandae reprehenderit sint dolorem minus iste doloremque ex distinctio maiores fuga omnis rem aspernatur nihil odio, nam accusamus culpa necessitatibus magnam saepe! Maiores ex minima earum obcaecati autem odit facilis voluptas molestias, minus excepturi id cum deleniti blanditiis provident nisi similique quam quo? Asperiores recusandae ipsum adipisci consequatur fugit maxime praesentium modi quidem sapiente repudiandae, et laboriosam sit. Debitis distinctio quam commodi saepe quia cum incidunt excepturi asperiores consequuntur eius? Nesciunt ab suscipit, necessitatibus consequatur eaque voluptatem soluta, vitae nisi odit ratione unde dignissimos delectus officia quis explicabo iure nobis quod. Aliquam vitae debitis ut nostrum odit reiciendis porro neque voluptatem libero, quam unde quaerat, recusandae cumque similique tempora deleniti voluptate quibusdam vero numquam perferendis id eum amet ab! Beatae odio enim nobis ea repudiandae, illo facilis provident consequuntur nemo rerum est ipsum earum culpa obcaecati dignissimos doloribus itaque ex necessitatibus saepe numquam? A corporis totam hic qui harum, sapiente facere aperiam culpa tenetur ex id quod architecto blanditiis necessitatibus, ipsam fugiat similique omnis. Perspiciatis voluptas nisi nam temporibus assumenda enim libero esse! Dolorem impedit cum debitis nesciunt quas voluptatem deserunt odit sunt nihil ducimus vero ut obcaecati esse architecto ea ipsa sequi quam, pariatur officia ex tempore veritatis hic. Cumque, aliquam veritatis? Consequuntur veritatis cum pariatur et architecto incidunt quasi tempora quas maiores, nobis nostrum! Corporis eligendi esse numquam suscipit ipsam reprehenderit nulla voluptatem provident deserunt id! Rem, ratione eligendi? Deleniti ut, expedita maxime dolore eligendi aliquid sint facilis minima magnam? Libero perspiciatis, quasi recusandae facere quia autem excepturi debitis ducimus voluptatibus deserunt? Quos laborum recusandae nisi earum.</p>
+<script>
+    var canvas = document.getElementById('canvas'),
+  context = canvas.getContext('2d'),
+  canvasWidth = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth),
+  canvasHeight = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight),
+  requestAnimationFrame = window.requestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.msRequestAnimationFrame;
+var persons = [],
+  numberOfFirefly = 30,
+  birthToGive = 25;
+
+var colors = [];
+/* Galactic Tea - http://www.colourlovers.com/palette/1586746/Galactic_Tea*/
+colors[2] = [];
+colors[2]['background'] = '#2F294F';
+colors[2][1] = 'rgba(74,49,89,';
+colors[2][2] = 'rgba(130,91,109,';
+colors[2][3] = 'rgba(185,136,131,';
+colors[2][4] = 'rgba(249,241,204,';
+
+var colorTheme = 2, //getRandomInt(0,colors.length-1);
+  mainSpeed = 1;
+
+function getRandomInt(min, max, exept) {
+  var i = Math.floor(Math.random() * (max - min + 1)) + min;
+  if (typeof exept == "undefined") return i;
+  else if (typeof exept == 'number' && i == exept) return getRandomInt(min, max, exept);
+  else if (typeof exept == "object" && (i >= exept[0] && i <= exept[1])) return getRandomInt(min, max, exept);
+  else return i;
+}
+
+function isEven(n) {
+  return n == parseFloat(n) ? !(n % 2) : void 0;
+}
+
+function degToRad(deg) {
+  return deg * (Math.PI / 180);
+}
+
+function Firefly(id) {
+  this.id = id;
+  this.width = getRandomInt(3, 6);
+  this.height = this.width;
+  this.x = getRandomInt(0, (canvas.width - this.width));
+  this.y = getRandomInt(0, (canvas.height - this.height));
+  this.speed = (this.width <= 10) ? 2 : 1;
+  this.alpha = 1;
+  this.alphaReduction = getRandomInt(1, 3) / 1000;
+  this.color = colors[colorTheme][getRandomInt(1, colors[colorTheme].length - 1)];
+  this.direction = getRandomInt(0, 360);
+  this.turner = getRandomInt(0, 1) == 0 ? -1 : 1;
+  this.turnerAmp = getRandomInt(1, 2);
+  this.isHit = false;
+  this.stepCounter = 0;
+  this.changeDirectionFrequency = getRandomInt(1, 200);
+  this.shape = 2; //getRandomInt(2,3);
+  this.shadowBlur = getRandomInt(5, 25);
+}
+
+Firefly.prototype.stop = function() {
+  this.update();
+}
+
+Firefly.prototype.walk = function() {
+  var next_x = this.x + Math.cos(degToRad(this.direction)) * this.speed,
+    next_y = this.y + Math.sin(degToRad(this.direction)) * this.speed;
+
+  // Canvas limits
+  if (next_x >= (canvas.width - this.width) && (this.direction < 90 || this.direction > 270)) {
+    next_x = canvas.width - this.width;
+    this.direction = getRandomInt(90, 270, this.direction);
+  }
+  if (next_x <= 0 && (this.direction > 90 && this.direction < 270)) {
+    next_x = 0;
+    var exept = [90, 270];
+    this.direction = getRandomInt(0, 360, exept);
+  }
+  if (next_y >= (canvas.height - this.height) && (this.direction > 0 && this.direction < 180)) {
+    next_y = canvas.height - this.height;
+    this.direction = getRandomInt(180, 360, this.direction);
+  }
+  if (next_y <= 0 && (this.direction > 180 && this.direction < 360)) {
+    next_y = 0;
+    this.direction = getRandomInt(0, 180, this.direction);
+  }
+
+  this.x = next_x;
+  this.y = next_y;
+
+  this.stepCounter++;
+
+  if (this.changeDirectionFrequency && this.stepCounter == this.changeDirectionFrequency) {
+    this.turner = this.turner == -1 ? 1 : -1;
+    this.turnerAmp = getRandomInt(1, 2);
+    this.stepCounter = 0;
+    this.changeDirectionFrequency = getRandomInt(1, 200);
+  }
+
+  this.direction += this.turner * this.turnerAmp;
+
+  this.update();
+}
+
+Firefly.prototype.takeOppositeDirection = function() {
+  // Right -> Left
+  if ((this.direction >= 0 && this.direction < 90) || (this.direction > 270 && this.direction <= 360)) {
+    this.direction = getRandomInt(90, 270);
+    return;
+  }
+  // Left -> Right
+  if (this.direction > 90 && this.direction < 270) {
+    var exept = [90, 270];
+    this.direction = getRandomInt(0, 360, exept);
+    return;
+  }
+  // Down -> Up
+  if (this.direction > 0 && this.direction < 180) {
+    this.direction = getRandomInt(180, 360);
+    return;
+  }
+  // Up -> Down
+  if (this.direction > 180) {
+    this.direction = getRandomInt(0, 180);
+  }
+}
+
+Firefly.prototype.update = function() {
+
+  context.beginPath();
+
+  context.fillStyle = this.color + this.alpha + ")";
+  context.arc(this.x + (this.width / 2), this.y + (this.height / 2), this.width / 2, 0, 2 * Math.PI, false);
+  context.shadowColor = this.color + this.alpha + ")";
+  context.shadowBlur = this.shadowBlur;
+  context.shadowOffsetX = 0;
+  context.shadowOffsetY = 0;
+  context.fill();
+
+  if (this.id > 15) {
+    this.alpha -= this.alphaReduction;
+    if (this.alpha <= 0) this.die();
+  }
+
+}
+
+Firefly.prototype.die = function() {
+  persons[this.id] = null;
+  delete persons[this.id];
+}
+
+window.onload = function() {
+  canvas.setAttribute('width', canvasWidth);
+  canvas.setAttribute('height', canvasHeight);
+
+  start();
+}
+
+function start() {
+  instantiatePopulation();
+  animate();
+}
+
+function instantiatePopulation() {
+  var i = 0;
+  while (i < numberOfFirefly) {
+    persons[i] = new Firefly(i);
+    i++;
+  }
+}
+
+function animate() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  context.beginPath();
+
+  // Création d'une copie de l'array persons
+  persons_order = persons.slice(0);
+  // Tri par ordre de position sur l'axe y (afin de gérer les z-index)
+  persons_order.sort(function(a, b) {
+    return a.y - b.y
+  });
+
+  // Paint les instances dans l'ordre trié
+  for (var i in persons_order) {
+    var u = persons_order[i].id;
+    persons[u].walk();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+canvas.onclick = function(e) {
+  giveBirth(e, birthToGive);
+}
+
+function giveBirth(e, u) {
+  var i = persons.length;
+  persons[i] = new Firefly(i);
+  persons[i].x = e.layerX;
+  persons[i].y = e.layerY;
+
+  if (u > 1) giveBirth(e, u - 1);
+}
+</script>
+ </body>
+ </html>
